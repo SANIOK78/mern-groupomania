@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+:root {
+    // un REM = 10px
+    font-size: 62.5%; 
+}
+
+$font-1: 'Lato', sans-serif;
+$font-2: 'Fredoka One', cursive;
+$primaire: #FD2D01;
+$primClaire: lighten(#FD2D01, 10%);
+$secondaire:#FFD7D7;
+$secondClaire: lighten(#FFD7D7, 5%);
+$tertiaire: #4E5166;
+$tertiClaire: lighten(#4E5166, 45%);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+body {  
+    font-weight: 700;
+    font-family: $font-1;  
+}
+
+button{
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: 0.3s;  
+}
+
+button[type="submit"] {
+    width: 100%;
+    background: $primClaire;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    padding: 10px 1.4rem;
+    color: #fff;
+    margin: 2rem 0;
+    border: 1px solid $secondaire;
+    font-weight: 500;
+   
+    &:hover{
+       background: $primaire;
+    }
+}
+
+button[disabled],
+button[disabled]:hover{
+    border: 1px solid $tertiaire;
+    background: $secondClaire;
+    color: $tertiClaire;
+    cursor: not-allowed;
+}
+
+
+.error{
+    color:red;
+    font-size: 12px;
+    font-weight: 100;
+    margin-top: 5px;
+    text-align: center;
+}
+.success{
+    color: green;
+}

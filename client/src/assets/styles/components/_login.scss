@@ -1,0 +1,144 @@
+.main-container{
+    position: relative;
+    width: 100%;
+    height: 95vh;
+    display: flex;
+
+    .imgBox {
+        position: relative;
+        width: 50%;
+        height: 100%;
+
+        @media (max-width: 768px) {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &:before{
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(225deg, $primaire, $tertiaire);
+            z-index: 1;
+            mix-blend-mode: screen;
+        }
+        img{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+    }
+    .contentBox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+       
+        @media (max-width: 768px) {          
+            width: 100%;
+            height: 100%;
+            z-index: 1;   
+        }
+
+        .formBox{
+            width: 50%;
+            border-radius: 1.2rem;
+            @media (max-width: 1200px) {          
+                width: 70%;   
+            }
+            @media (max-width: 768px) {
+                // width: 75%;
+                padding: 50px;
+                background: rgba(255, 255, 255, 0.9);
+                margin: 2rem 5rem 14rem ;
+            }
+            @media (max-width: 500px) {
+                width: 100%;
+                padding: 20px;
+                margin: 0 3rem 12rem;
+            }
+
+            h2{
+                color: $tertiaire; 
+                font-weight: 600;
+                font-size: 2.4rem;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                border-bottom: 4px solid $primaire;
+                display: inline-block;
+                letter-spacing: 3px;
+
+                @media (max-width: 768px) {
+                    border-bottom: 2px solid $primaire;
+                    font-size: 1.8rem;
+                    letter-spacing: 1px;
+                }
+            }
+            
+            .inputBox {
+                margin-bottom: 2rem;
+
+                label {
+                    display: inline-block;
+                    font-size: 1.6rem;
+                    margin-bottom: 0.6rem;
+                    color: $tertiaire;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    @media (max-width: 500px) {
+                        font-size: 1.4rem;  
+                    }
+                    a{
+                        font-style: italic;
+                        font-weight: 600;
+                    }
+                }
+                input {
+                    width: 100%;
+                    padding: 10px 1.4rem;
+                    outline: none;
+                    font-weight: 400;
+                    border: 1px solid $tertiaire;
+                    font-size: 1.6rem;
+                    letter-spacing: 1px;
+                    color: $tertiaire;
+                    background: transparent;
+                    border-radius: 1.2rem;
+                    @media (max-width: 500px) {
+                        padding: 0.7rem 1rem;
+                        font-size: 1.4rem;  
+                    }                   
+                }
+               
+                p {
+                    font-size: 1.6rem;
+                    @media (max-width: 500px) {
+                        font-size: 1.4rem;  
+                    }
+
+                    a {
+                        color:$primaire;
+                        letter-spacing: 0.1rem;
+                        transition: 0.3s;
+
+                        &:hover{
+                            font-size: 1.7rem; 
+                            transform: scale(1.2); 
+                        }                                            
+                    } 
+                }
+               
+            }
+        }
+    }
+}

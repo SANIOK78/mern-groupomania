@@ -68,7 +68,7 @@ const Register = () => {
                     setErrorPwd(res.data.errors.password);                  
 
                 } else { 
-                    console.log(res)
+                    // console.log(res)
                     alert("Inscription reusit, connectez-vous !")
                     navigate("/login");       
                 }

@@ -52,12 +52,10 @@ module.exports.signUp = async (req, res) => {
         // création "user" et la reponse du serveur
         const user = await UserModel.create({pseudo, email, password });
 
-        res.status(201).json(
-            { 
-                message: "Utilisateur créé !",
-                user: user              
-            }
-        );
+        res.status(201).json({            
+            message: "Utilisateur créé !",
+            user: user._id                         
+        });
     }
     catch(err) {
         // On capte les erreurs survenus a l'inscription
@@ -72,5 +70,5 @@ module.exports.logout = (req, res) => {
     // suppression cookie
     res.cookie('token', '', {maxAge: 1});
     res.send({message: "Utilisateur deconnecté "})
-    // res.redirect('/');
+    res.redirect('/');
 }

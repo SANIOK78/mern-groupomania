@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
             lowercase: true,   //en minuscule  
         },       
         password: { type: String, required: true, max: 1024, minlength: 6 },
-        job : { type: String },
+        job : { type: String, default: "" },
         role : { type: String, default: "USER" },
         // isAdmin: { type: Boolean, default: false }, 
         avatar : { type : String, default: "./uploads/profil/random-user.png" },
@@ -54,6 +54,6 @@ userSchema.statics.login = async function(email, password) {
     throw Error('incorrect email');
 }
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
 

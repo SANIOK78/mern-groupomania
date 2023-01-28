@@ -3,6 +3,7 @@ require('dotenv').config({path: './config/.env'});
 require('./config/connectDb');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const { checkUser, requireAuth } = require("./middlewares/auth.middleware");
 const userRoutes = require('./routes/routerUser');
 const cors = require("cors");
 
@@ -27,6 +28,39 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+//   );
+//   next();
+// });
+// app.use(
+//   cors({
+//     origin: [
+//       `http://localhost:3000`,
+//       `http://localhost:5000`,
+//       `http://localhost:3306`,
+//     ],
+//     credentials: "true",
+//   })
+// );
+
+
+// Sécurisation des routes : vérif si "user" a un token
+app.get("*", checkUser);
+
+// Route pour vérifier si User a un token
+app.get('/jwtid', requireAuth, (req, res) => {
+  res.status(200).send(res.locals.user._id)
+});
 
 // routes
 app.use('/api/user', userRoutes);

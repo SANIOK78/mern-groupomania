@@ -1,0 +1,110 @@
+.profil-page{
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .profil-container{
+        text-align: center; 
+        width: 90%;
+        margin: 0 auto;
+        
+        .update-container{
+            display: flex;
+            padding: 3rem;
+            @media screen and (max-width: 500px){
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-part{
+                width: 35%;
+                height: 40rem;
+                padding: 2rem;
+                background: $secondClaire;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @media screen and (max-width: 500px){
+                    width: 100%;
+                    height: auto; 
+                    margin-bottom: 1rem; 
+                }
+                h1{
+                   font-size: 2.4rem;
+                   margin-bottom: 1rem; 
+                    @media screen and (max-width: 768px){
+                        font-size: 2rem;
+                    }
+                }
+                img{
+                    width: 180px;
+                    height: 180px;
+                    border: 2px solid $primaire;           
+                    border-radius: 50%; 
+                    @media screen and (max-width: 768px){
+                        width: 140px;
+                        height: 140px;
+                    }                  
+                }
+                .info-user{
+                    margin-top: 2rem;
+                    text-align: left;
+                    h3{
+                        font-size: 2rem;
+                        margin-bottom: 1rem;
+
+                        @media screen and (max-width: 768px){
+                            font-size: 1.6rem;
+                        }
+                    }
+                }              
+            }
+            .right-part{
+                width: 65%;
+                height: 40rem;
+                padding: 2rem 3rem;
+                background: $secondClaire;
+                border-radius: 10px;
+                text-align: center;
+                // display: flex;
+                // flex-direction: column;
+                margin-left: 2rem;
+
+                @media screen and (max-width: 500px){
+                    width: 100%;
+                    height: auto; 
+                    margin-left: 0; 
+                }
+                .bio-update {
+                    
+                    h3{
+                        font-size: 2rem;
+                        text-align: center; 
+
+                        @media screen and (max-width: 768px){
+                            font-size: 1.6rem;
+                        }                      
+                    }
+                    h4 {
+                        font-size: 1.4rem;
+                        text-align: left;
+                    }
+                    textarea, p {
+                        width: 100%;
+                        font-size: 1.2rem;
+                        font-family: $font-1 ;
+                        border: 1px solid $primaire;
+                        border-radius: 8px;
+                        padding: 0.6rem;
+                        margin-top: 1rem
+                    }
+                    p{
+                        height: 4rem;
+                    }
+                }
+            }
+        }
+    }
+};

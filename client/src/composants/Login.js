@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Img from '../assets/images/reseauxSociaux.jpg';
 
 const Login = () => {
 
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorEmail, setErrorEmail] = useState("");
@@ -24,7 +23,7 @@ const Login = () => {
         // requête au Serveur
         await axios({
             method: "post",
-            url: `${process.env.REACT_APP_API_URL}/api/user/login`,
+            url: `${process.env.REACT_APP_API_URL}api/user/login`,
             // url: "http://localhost:4400/api/user/login",
             withCredentials: true,           
             data: {                 // envoit "email" et "password"
@@ -38,7 +37,7 @@ const Login = () => {
                 setErrorPassword( res.data.errors.password );
 
             } else {
-                navigate("/");
+                window.location = "/";
             }
         })
         .catch(err => console.log(err))

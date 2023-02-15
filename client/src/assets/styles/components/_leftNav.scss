@@ -1,0 +1,36 @@
+.container-left-nav{
+    // border:1px solid green;
+    position: relative;
+    display: block;
+
+    @media screen and (max-width: 500px){
+        display: none; 
+    }
+
+    .icons{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 10px;
+
+        img {
+            height: 46px;
+            width: 46px;
+            padding: 6px;           
+        }
+
+        .active{
+            border-left: 4px solid $primClaire;
+            border-radius: 2px;
+            transform: scaleY(0);
+            transform-origin: center;
+            animation: scale 0.8s ease forwards;
+
+            @keyframes scale {
+                to {
+                    transform : scaleY(1)
+                }
+            }
+        }
+    }
+}

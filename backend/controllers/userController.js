@@ -5,24 +5,28 @@ const ObjectID = require("mongoose").Types.ObjectId;
 
 // Afficher tous les utilisateurs
 module.exports.getAllUsers = async (req, res) => {
-    // if("ADMIN")
-    // affiche tous les user sans le MDP
-    const users = await UserModel.find().select("-password");
-    res.status(200).json(users);
+  // if("ADMIN")
+  // affiche tous les user sans le MDP
+  const users = await UserModel.find().select("-password");
+  res.status(200).json(users);
 };
 
 // Un user
 module.exports.userInfo = (req, res) => {
   // test si l'ID est connu dans la BD
   if (!ObjectID.isValid(req.params.id))
-  return res.status(400).send("ID inconnu : " + req.params.id);
+    return res.status(400).send("BD => ID inconnu : " + req.params.id);
 
   // Si ID existe
   UserModel.findById(req.params.id, (err, docs) => {
   // pas d'erreurs on affiche la Data
-  if (!err) res.send(docs);
-  // en cas d'erreur, on l'affiche dans la console
-  else console.log("ID inconnu : " + err);
+    if (!err){
+      res.send(docs);
+      
+      // en cas d'erreur, on l'affiche dans la console
+    } else {
+      console.log("ID inconnu : " + err)
+    };
   }).select("-password");
 
 }
@@ -39,8 +43,6 @@ module.exports.updateUser = async (req, res) => {
         {
           $set: {                       //"$set" => on modifie
             bio: req.body.bio,
-            pseudo: req.body.pseudo,
-            avatar: req.body.avatar,
             job: req.body.job
           }
         },
@@ -48,12 +50,14 @@ module.exports.updateUser = async (req, res) => {
         { new: true, upsert: true, setDefaultsOnInsert: true },
         // la function qui va s'executer
         (err, docs) => {
-          if (!err) return res.send(docs);
-          else return res.status(500).send({ message: err });
+          if (!err) res.status(200).send(docs);
+          // else res.status(500).send({ message: 'Une erreur se produite !' });
+          else console.log( 'Une erreur se produite : ', err );
         }
       );
+
     } catch (err) {
-      return res.status(500).json({ message: err });
+      return res.json( {Erreur:  err} );
     }
 };
 

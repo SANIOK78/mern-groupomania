@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserIdContext } from '../context/AppContext';
+import Login from '../composants/Login';
+import UpdateProfil from '../composants/profil/UpdateProfil';
+import LeftNav from '../LeftNav';
 
 
 const Profil = () => {
-    return (
-        <div style={{textAlign: "center"}}>
-            <h1>Page profil Utilisateur</h1> 
-            <p>Ici on va afficher les infos d'utilisateur</p>       
-            
+
+    // stockage de "user.id " s'il est connecté
+    const userId = useContext(UserIdContext);
+
+    return (       
+        <div className='profil-page'>
+            <LeftNav /> 
+
+            { 
+                userId ? <UpdateProfil /> : <Login />                                                 
+            }           
         </div>
+    
     );
 };
 

@@ -53,7 +53,7 @@ const Register = () => {
         } else {
             await axios({
                 method: "post",
-                url: `${process.env.REACT_APP_API_URL}/api/user/register`,
+                url: `${process.env.REACT_APP_API_URL}api/user/register`,
                 // url: "http://localhost:4400/api/user/register",
                 data: {
                     pseudo: pseudo,

@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
         job : { type: String, default: "" },
         role : { type: String, default: "USER" },
         // isAdmin: { type: Boolean, default: false }, 
-        avatar : { type : String, default: "./uploads/profil/random-user.png" },
+        avatar : { type : String, default: "./uploads/profil/profil_default.jpg" },
         bio : { type: String, max: 1024 },
         followers : { type: [String] },    
         following : { type: [String] },

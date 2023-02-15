@@ -24,19 +24,19 @@ module.exports.signIn = async (req, res) => {
 
     try {
         // La function "login()" importé depuis "UserModel" va verifier déjà
-        // si "user" er "password" correspond avec selui de la BD
+        // si "user" et "password" correspond avec selui de la BD
         const user = await UserModel.login(email, password);
-
+        console.log("Connexion : ", user)
         // Création token de connexion ("_id" depuis mongoDb)
         const token = createToken(user._id);
 
         // Enregistrement du "token" en locale, dans les cookie navigateur
-        res.cookie('token', token, { httpOnly: true, maxAge});
+        res.cookie('tokenJwt', token, { httpOnly: true, maxAge});
         res.status(200).json({
             user: user._id,
+            // pseudo: user.pseudo,
             token
         });
-
     } catch(err) {
         console.log(err)
         const errors = signInErrors(err);
@@ -56,8 +56,7 @@ module.exports.signUp = async (req, res) => {
             message: "Utilisateur créé !",
             user: user._id                         
         });
-    }
-    catch(err) {
+    } catch(err) {
         // On capte les erreurs survenus a l'inscription
         const errors = signUpErrors(err);
         // Renvoit de l'erreur dans la reponse 
@@ -68,7 +67,8 @@ module.exports.signUp = async (req, res) => {
 // DECONNEXION
 module.exports.logout = (req, res) => {
     // suppression cookie
-    res.cookie('token', '', {maxAge: 1});
-    res.send({message: "Utilisateur deconnecté "})
-    res.redirect('/');
+    res.cookie('tokenJwt', '', {maxAge: 1});
+    // res.clearCookie('tokenJwt');
+    res.status(200).send({message: "Utilisateur deconnecté "})
+    // res.redirect('/');
 }

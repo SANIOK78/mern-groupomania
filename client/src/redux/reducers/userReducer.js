@@ -1,8 +1,8 @@
 // Reducer "user" qui va interagir avec le "store"
 
 // import "type" "actions"
-import { GET_USER } from "../actions/userAction";
-import { UPDATE_INFOS } from "../actions/userAction";
+import { GET_USER, UPDATE_INFOS, UPLOAD_PICTURE } from "../actions/userAction";
+
 
 // Création reducer "user"
 const initialState = {};
@@ -20,7 +20,14 @@ export default function userReducer(state = initialState, action) {
                 bio: action.payload.bio,
                 job: action.payload.job
             };
-        
+            
+        case UPLOAD_PICTURE :
+            // On récupér ce qu'il y a déjà, et on modifie valeur "picture"
+            return {
+                ...state,
+                avatar: action.payload,
+            };
+
         default: return state;
     }
 }

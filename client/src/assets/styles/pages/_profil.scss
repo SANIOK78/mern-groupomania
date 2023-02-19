@@ -38,15 +38,31 @@
                         font-size: 2rem;
                     }
                 }
-                img{
+                .img-profile{
                     width: 180px;
                     height: 180px;
-                    border: 2px solid $primaire;           
+                    border: 2px solid $primaire;
+                    box-shadow: 0px 0 6px 2px $tertiaire;           
                     border-radius: 50%; 
+
                     @media screen and (max-width: 768px){
                         width: 140px;
                         height: 140px;
-                    }                  
+                    }
+                    img{
+                        width: 176px;
+                        height: 176px;
+                        border-radius: 50%; 
+                        overflow: hidden;
+                        object-fit: cover;  
+                        @media screen and (max-width: 768px){
+                            width: 136px;
+                            height: 136px;
+                        }
+                    } 
+                    input[type="file"] {
+                        display: none;
+                    }                
                 }
                 .info-user{
                     margin-top: 2rem;
@@ -93,15 +109,23 @@
                     }
                     textarea, p {
                         width: 100%;
-                        font-size: 1.2rem;
+                        font-size: 1.6rem;
                         font-family: $font-1 ;
+                        text-align: left;
                         border: 1px solid $primaire;
                         border-radius: 8px;
                         padding: 0.6rem;
-                        margin-top: 1rem
+                        margin-top: 1rem;
+                        color: $tertiaire;
+                        @media screen and (max-width: 560px){
+                            font-size: 1.4rem;
+                        }
                     }
                     p{
                         height: 4rem;
+                        @media screen and (max-width: 560px){
+                            padding: 0.4rem;
+                        }
                     }
                 }
             }

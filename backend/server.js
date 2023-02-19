@@ -6,6 +6,8 @@ require('dotenv').config({path: './config/.env'});
 require('./config/connectDb');
 const { checkUser, requireAuth } = require("./middlewares/auth.middleware");
 const userRoutes = require('./routes/routerUser');
+// import "multer" pout telecharger des fichier
+// const multer = require("./middlewares/multer-config");
 
 const port = process.env.PORT || 4400 ;
 
@@ -21,7 +23,6 @@ const corsOptions = {
   "methods" : 'GET, POST, HEAD, PUT, PATCH, DELETE',
   "preflightContinue" : false
 }
-
 app.use(cors(corsOptions));
 
 
@@ -40,6 +41,15 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 // routes
 app.use('/api/user', userRoutes);
+
+// Route pour les fichier static
+// route "upload" ("/api/user/upload")
+// app.post("/upload", multer, (req, res) => {
+//   res.json({
+//       url: `/uploads/profil/${req.file.filename}`
+//   });
+// });
+
 
 app.listen(port , (err) => {
   if (err) console.log(err)

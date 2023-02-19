@@ -4,6 +4,7 @@ import axios from "axios";
 // Le  type de l'action
 export const GET_USER = "GET_USER"; 
 export const UPDATE_INFOS = "UPDATE_INFOS ";
+export const UPLOAD_PICTURE = "UPLOAD_PICTURE";
 
 // "getUser" => action  recupérer le "user"
 export const getUser = (userId) => {
@@ -43,3 +44,30 @@ export const updateInfos = (userId, bio, job) =>{
         .catch((err) => console.log("erreur UPDATE_INFOS :", err))
     }
 }
+
+// Action qui permet de télécharger un image:
+// "formData" => les info a transmetre au backend; "id" de user
+export const uploadPicture = (data, id) => {
+    return (dispatch) => {
+        // On envoit la "data" au backend (DB) qui va créer un nouveau fichier
+        return axios
+            .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)                                               
+            .then((res) => { 
+                console.log(res)
+                // test s'il n'y a pas des erreurs
+                if(res.data.errors) {
+                    console.log(res.data.errors)
+                }             
+                //on avertit le reduceur de changer du Store  
+                // on va chercher ce qu'on vient d'envoyé a la DB, le chemin de l'image
+                return axios
+                    .get(`${process.env.REACT_APP_API_URL}api/user/${id}`)                                   
+                    .then((res) => {
+                        //dispatch au reduceur : le "type" de l'action et "data"
+                        dispatch({ type: UPLOAD_PICTURE, payload: res.data.avatar });
+                    })
+                   
+            })
+            .catch((err) => console.log(err))       
+    }
+};
